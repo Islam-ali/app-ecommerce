@@ -1,0 +1,19 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row class="container">
+          <span routerLink="/" style="cursor: pointer;">Ecommerce</span>
+          <span class="example-spacer"></span>
+          <button mat-button  *ngIf="isLogin && isAdmin" class="mx-2" routerLink="/admin" routerLinkActive="router-link-active"  >Admin</button>
+          <button mat-button  *ngIf="isLogin" class="mx-2" routerLink="/product" routerLinkActive="router-link-active"  >Products</button>
+          <button mat-icon-button *ngIf="isLogin && !isAdmin"  aria-label="Example icon shopping_cart" routerLink="/cart" >
+            <mat-icon [matBadge]="badgeCart > 0 ? badgeCart:'' " matBadgeColor="warn">shopping_cart</mat-icon>
+          </button>
+          <button mat-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>          
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item *ngIf="!isLogin"  routerLink="/auth/login">Login</button>
+            <button mat-menu-item *ngIf="!isLogin" routerLink="/auth/register">Sign Up</button>
+            <button mat-menu-item *ngIf="isLogin" routerLink="/" (click)="logOut()">Logout</button>
+          </mat-menu>
+      </mat-toolbar-row>
+  </mat-toolbar>

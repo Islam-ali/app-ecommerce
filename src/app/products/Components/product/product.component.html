@@ -1,0 +1,24 @@
+
+  <mat-card-header>
+    <mat-card-subtitle><mat-icon>sell</mat-icon>{{product.category}}</mat-card-subtitle>
+    <button mat-icon-button *ngIf="isAdmin" aria-label="Example icon button with a heart icon" (click)="openDialog();send(product)">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+  </mat-card-header>
+  <img mat-card-image [src]="product.image" alt="{{product.image}}" [routerLink]="product.id">
+  <mat-card-content>
+    <mat-card-title class="title">{{product.title}}</mat-card-title>
+    <p>{{product.description | text : seeMoreIndex :index}}
+      <span 
+      *ngIf="product.description.length > 3"
+      style="cursor:pointer" class="text-danger"
+          (click)="seeMoreIndex = seeMoreIndex == index ? -1 : index">{{seeMoreIndex
+          == index ? "less"
+          : "more...."}}</span>
+    </p>
+  </mat-card-content>
+<mat-card-actions>
+  <button mat-raised-button color="primary" [disabled]="isAdmin" (click)="add()">Add to cart</button>
+  <div><span>{{product.price | currency}}</span></div>
+</mat-card-actions>
+

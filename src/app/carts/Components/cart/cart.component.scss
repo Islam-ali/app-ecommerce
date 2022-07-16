@@ -1,0 +1,43 @@
+body
+{
+  width: 100%;
+  overflow-x: hidden;
+}
+.card-table
+{
+  margin-top:50px ;
+  overflow: hidden;
+}
+.card-product
+{
+  width: 100%;
+}
+.tr{
+  td{
+    vertical-align: middle;
+  }
+  &:hover{
+    background: #eee;
+  }
+}
+.img
+{
+  width: 100px;
+  height: 100px;
+}
+.alert-success{
+  position: fixed;
+  top:100px;
+  left:50%;
+  transform: translateX(-50%);
+  width: 50%;
+  min-width: max-content;
+}
+@media (max-width: 992px)
+{
+  .img
+  {
+    width: 100px;
+    height: 100px;
+  }
+}

@@ -1,0 +1,71 @@
+<div class="header-user w-100 text-center">
+  <h2 style="font-weight:800;">All users</h2>
+  <p style="color: #666;">you have <strong>{{users.length}}</strong> users</p>
+</div>
+  <div class="d-flex align-items-center">
+    <mat-form-field style="max-width: 300px;" appearance="standard">
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+    </mat-form-field>
+    <button mat-mini-fab aria-label="Example icon shopping_cart" color="primary" class="mx-3" (click)="openDialog();sendUser(null,'add')">
+        <mat-icon>add</mat-icon>
+    </button>  
+  </div>
+  <div style="overflow: auto;">
+    <div class="mat-elevation-z8" style="min-width:600px;">
+      <table mat-table [dataSource]="dataSource" matSort>
+    
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+          <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+        </ng-container>
+    
+        <!-- Name Column -->
+        <ng-container matColumnDef="username">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+          <td mat-cell *matCellDef="let row"> {{row.username}} </td>
+        </ng-container>
+      <!-- email Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+          <td mat-cell *matCellDef="let row"> {{row.email}} </td>
+        </ng-container>
+      <!-- password Column -->
+        <ng-container matColumnDef="password">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Password </th>
+          <td mat-cell *matCellDef="let row"> {{row.password}} </td>
+        </ng-container>
+      <!-- edit Column -->
+        <ng-container matColumnDef="edit">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> edit </th>
+          <td mat-cell *matCellDef="let row">
+              <button mat-icon-button aria-label="Example icon edit" color="primary" (click)="openDialog();sendUser(row,'edit')">
+                  <mat-icon>edit</mat-icon>
+              </button> 
+          </td>
+        </ng-container>
+        <!-- delete Column -->
+        <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> delete </th>
+          <td mat-cell *matCellDef="let row;index as index">
+              <button mat-icon-button aria-label="Example icon delete" color="warn" (click)="deleteUser(row.id)">
+                  <mat-icon>delete</mat-icon>
+              </button> 
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+      </table>
+    
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+    </div>
+  </div>
+  <section *ngIf="loading">
+    <app-loading></app-loading>
+</section> 

@@ -1,0 +1,17 @@
+.details{
+  // background: #fff;
+  // box-shadow: 2px 2px 4px #eee, -2px -2px 4px #eee;
+  .img{
+    display: flex;
+    overflow: hidden;
+    img{
+      max-width: 400px;
+      max-height: 400px;
+      margin: 0 auto;
+    }
+  }
+  .list-unstyle{
+    list-style: none;
+    padding-left:0 ;
+  }
+}

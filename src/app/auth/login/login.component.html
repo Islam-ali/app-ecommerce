@@ -1,0 +1,41 @@
+<div class="login my-5"> 
+    <h2 class="my-3">Login</h2>
+        <form [formGroup]="loginForm" (submit)="submitLogin(loginForm)">
+            <!-- user Name -->
+                <mat-form-field appearance="fill">
+                    <mat-label>User name</mat-label>
+                    <input matInput formControlName="username">
+                    <mat-error *ngIf="f['username'].touched && f['username'].invalid" >
+                        <mat-error *ngIf="f['username'].errors && f['username'].errors['required']">Your user name is required</mat-error>
+                    </mat-error>
+                </mat-form-field>
+            <!-- Password -->
+            <mat-form-field appearance="fill">
+                <mat-label>Enter your password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error *ngIf="f['password'].touched && f['password'].invalid" >
+                    <mat-error *ngIf="f['password'].errors && f['password'].errors['required']">Your password is not valid</mat-error>
+                </mat-error>
+              </mat-form-field>
+              <div class="login">
+                <h3>Login Admin</h3>
+                <div>
+                    <p><strong>username :</strong>admin</p>
+                    <p><strong>password :</strong>admin1</p>
+                </div>
+            </div>
+            <div class="text-center my-3">
+                <button type="submit"  [disabled]="loginForm.invalid" mat-raised-button color="primary">Login</button>
+                <br>
+                |
+                <br>
+                <a routerLink="/auth/register">Sign Up</a>
+            </div>            
+        </form>
+</div>
+<section *ngIf="loading">
+    <app-loading></app-loading>
+</section>  

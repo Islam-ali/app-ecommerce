@@ -1,0 +1,52 @@
+<h2 mat-dialog-title>{{button}} User</h2>
+<div mat-dialog-content>
+        <form [formGroup]="userForm" (submit)="addEditUser(userForm)">
+            <mat-form-field appearance="fill" *ngIf="button == 'add'">
+                <mat-label>Id</mat-label>
+                <input type="number" matInput formControlName="id">
+            </mat-form-field>            
+            <!-- email -->
+                <mat-form-field appearance="fill">
+                  <mat-label>Enter your email</mat-label>
+                  <input matInput placeholder="pat@example.com" formControlName="email">
+                </mat-form-field>
+            <!-- user Name -->
+                <mat-form-field appearance="fill">
+                    <mat-label>User name</mat-label>
+                    <input matInput formControlName="username">
+                </mat-form-field>
+            <!-- name -->
+                <div formGroupName="name">
+                    <!-- First Name -->
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>First name</mat-label>
+                        <input matInput formControlName="firstname">
+                    </mat-form-field>
+                    <!-- Last Name -->
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Last Name</mat-label>
+                        <input matInput formControlName="lastname">
+                    </mat-form-field>
+                </div>
+            <!-- Password -->
+            <mat-form-field appearance="fill">
+                <mat-label>Enter your password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+              </mat-form-field>
+            <!-- Phone -->
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Telephone</mat-label>
+                <input type="tel" formControlName="phone" matInput placeholder="555-555-1234">
+                <mat-icon matSuffix>phone</mat-icon>
+            </mat-form-field>
+            <div>
+                <button type="submit" mat-raised-button color="primary">{{button}}</button>
+            </div>            
+        </form>
+</div>
+<section *ngIf="loading">
+    <app-loading></app-loading>
+</section>  

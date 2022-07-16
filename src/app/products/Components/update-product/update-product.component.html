@@ -1,0 +1,40 @@
+<h1 mat-dialog-title>Update Product</h1>
+<!-- <div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Close</button>
+</div> -->
+<div mat-dialog-content>
+    <form [formGroup]="updateForm" (submit)="updateProduct(updateForm)">
+                <!-- title -->
+        <mat-form-field appearance="fill">
+            <mat-label>title</mat-label>
+            <input matInput formControlName="title">
+        </mat-form-field>
+                <!-- price -->
+        <mat-form-field appearance="fill">
+            <mat-label>price</mat-label>
+            <input type="number" matInput formControlName="price">
+        </mat-form-field>
+                <!-- all Categories -->
+        <mat-form-field appearance="fill">
+            <mat-label>Catgory</mat-label>
+            <mat-select name="category" formControlName="category">
+              <mat-option *ngFor="let category of allCategories" [value]="category">
+                {{category}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <!-- image -->
+          <div style="width:100%;">
+              <img style="width: 100px;height: 100px;display: block; background: red;" [src]="URL" id="imageViewer">
+              <input type="file" accept="image/*" id="imageCapturer" (change)="useImage($event)">
+          </div>
+          <!-- description -->
+          <mat-form-field class="w-100" style="max-width: 100%;">
+            <mat-label>description</mat-label>
+            <textarea matInput formControlName="description"></textarea>
+          </mat-form-field>
+          <div>
+            <button type="submit" mat-raised-button color="primary">update</button>
+          </div>
+        </form>
+</div>

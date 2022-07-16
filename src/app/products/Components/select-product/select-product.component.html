@@ -1,0 +1,12 @@
+<div class="d-flex justify-content-center">
+  <div class="w-75">
+    <input [(ngModel)]="query" (ngModelChange)='onChange($event)' placeholder="Search">
+  </div>
+  <button mat-raised-button>
+    <mat-icon>tune</mat-icon>
+    <mat-select class="position-absolute w-100 start-0" (valueChange)="filterCategory($event)">
+      <mat-option value="all">All</mat-option>
+      <mat-option *ngFor="let item of category" [value]="item">{{item}}</mat-option>
+    </mat-select>
+  </button>
+</div>

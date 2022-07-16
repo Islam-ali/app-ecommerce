@@ -1,0 +1,37 @@
+img {
+  width: 80%;
+  margin: 10px auto;
+  height: 200px !important;
+  cursor: pointer;
+}
+.title , p{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp:1;
+  -webkit-box-orient: vertical;
+}
+
+mat-icon{
+  vertical-align: middle;
+}
+mat-card-header{
+  button{
+    position: absolute !important;
+    right: 5px !important;
+    top: 5px !important;
+  }
+}
+mat-card-actions{
+  display: flex;
+  justify-content: space-between;
+  div{
+    display: flex;
+    align-items: center;
+    span{
+      color: rgba(0,0,0,.54);
+      font-weight: 800;
+      font-size: 16px;
+    }
+  }
+}

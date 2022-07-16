@@ -1,0 +1,56 @@
+<ng-container *ngIf="cartProduct.length !=0">
+  <div class="card-table py-3">
+    <div class="header-cart w-100 text-center">
+      <h2 style="font-weight:800;">Shoping Cart</h2>
+      <p style="color: #666;">you have <strong>{{cartProduct.length}}</strong> item in cart</p>
+    </div>
+    <div class="card-product" style="overflow: auto;">
+      <table class="table table-bordered" style="min-width: 600px;">
+        <thead>
+          <tr>
+            <td>sr-no</td>
+            <td>product image</td>
+            <td>product name</td>
+            <td>price</td>
+            <td>quantity</td>
+            <td>total</td>
+            <td>action</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="tr" *ngFor="let item of cartProduct; let i = index">
+            <td>{{i+1}}</td>
+            <td><img class="img" src="{{item.product.image}}" alt=""> </td>
+            <td>{{item.product.title}}</td>
+            <td>{{item.product?.price | currency}} </td>
+            <td><input style="width: 50px;" type="number" min="1"  name="quantity" [(ngModel)]="item.quantity" (change)="getTotalPrice()"> </td>
+            <td>{{item.quantity * item.product.price | currency}} </td>
+            <td>
+              <button (click)="deleteProduct(i)" class="btn btn-danger" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+              </svg></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="w-100 d-flex justify-content-end align-items-center">
+        <button class="btn btn-success m-3" (click)="checkOut()">checkOut</button>
+        <button class="btn btn-danger m-3" (click)="emptyCart()">empty</button>
+        <td><strong>Grand Total : {{totalPrice | currency}}</strong> </td>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="done" class="alert alert-success text-center" role="alert">
+    Your Order Is Succses Send
+  </div>
+</ng-container>
+
+<ng-container *ngIf="cartProduct.length == 0" >
+  <div style="height: 100vh;" class="d-flex align-items-center justify-content-center">
+    <p style="font-size: 6vw;" >you cart is empty</p>
+  </div>
+</ng-container>
+
+<section *ngIf="loading">
+  <app-loading></app-loading>
+</section>

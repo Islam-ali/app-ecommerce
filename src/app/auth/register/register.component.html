@@ -1,0 +1,70 @@
+<div class="register my-5"> 
+    <h2 class="my-3">Sign Up</h2>
+        <form [formGroup]="registerForm" (submit)="submitRegister(registerForm)">
+            <!-- email -->
+                <mat-form-field appearance="fill">
+                  <mat-label>Enter your email</mat-label>
+                  <input matInput placeholder="pat@example.com" formControlName="email">
+                    <mat-error *ngIf="f['email'].touched && f['email'].invalid" >
+                        <mat-error *ngIf="f['email'].errors && f['email'].errors['required']">Your Email is required</mat-error>
+                    </mat-error>
+                </mat-form-field>
+            <!-- user Name -->
+                <mat-form-field appearance="fill">
+                    <mat-label>User name</mat-label>
+                    <input matInput formControlName="username">
+                    <mat-error *ngIf="f['username'].touched && f['username'].invalid" >
+                        <mat-error *ngIf="f['username'].errors && f['username'].errors['required']">Your user name is required</mat-error>
+                    </mat-error>
+                </mat-form-field>
+            <!-- name -->
+                <div formGroupName="name">
+                    <!-- First Name -->
+                    <mat-form-field class="example-full-width" style="margin-right: 12px;" appearance="fill">
+                        <mat-label>First name</mat-label>
+                        <input matInput formControlName="firstname">
+                    <mat-error *ngIf="f['name'].get('firstname')?.touched && f['name'].get('firstname')?.invalid" >
+                        <mat-error *ngIf="f['name'].get('firstname')?.errors && f['name'].get('firstname')?.errors">Your first name is required</mat-error>
+                    </mat-error>
+                    </mat-form-field>
+                    <!-- Last Name -->
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Last Name</mat-label>
+                        <input matInput formControlName="lastname">
+                    <mat-error *ngIf="f['name'].get('lastname')?.touched && f['name'].get('lastname')?.invalid" >
+                        <mat-error *ngIf="f['name'].get('lastname')?.errors && f['name'].get('lastname')?.errors">Your last name is required</mat-error>
+                    </mat-error>
+                    </mat-form-field>
+                </div>
+            <!-- Password -->
+            <mat-form-field appearance="fill">
+                <mat-label>Enter your password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                    <mat-error *ngIf="f['password'].touched && f['password'].invalid" >
+                        <mat-error *ngIf="f['password'].errors && f['password'].errors['required']">Your password is required</mat-error>
+                    </mat-error>
+            </mat-form-field>
+            <!-- Phone -->
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Telephone</mat-label>
+                <input type="tel" formControlName="phone" matInput placeholder="555-555-1234">
+                <mat-icon matSuffix>phone</mat-icon>
+                    <mat-error *ngIf="f['phone'].touched && f['phone'].invalid" >
+                        <mat-error *ngIf="f['phone'].errors && f['phone'].errors['required']">Your uphone is required</mat-error>
+                    </mat-error>
+            </mat-form-field>
+            <div class="text-center my-3">
+                <button type="submit" [disabled]="registerForm.invalid" mat-raised-button color="primary">Sign Up</button>
+                <br>
+                |
+                <br>
+                <a routerLink="/auth/login">Login</a>
+            </div>      
+        </form>
+</div>
+<section *ngIf="loading">
+    <app-loading></app-loading>
+</section>      
